@@ -19,9 +19,8 @@ function getid($email)
     $sql = "SELECT id FROM peoplesDetails WHERE email = :email";
     $stmt = $conn->prepare($sql);
     $data = $stmt->execute($data);
-    while($rowObj = $data->fetchObject()){
+    while($rowObj = $data->fetchObject()){ // this caused error
         $id = $rowObj->id;
     }
     return $id;
 }
-                
