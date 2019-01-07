@@ -64,17 +64,17 @@ include '../includes/navBar.php';
  addPerson($fname, $lname, $email);
  
     $conn = getConnetionComps();
-
+    $id = getid($email)
  $questions = $_REQUEST['question'];
  $quNum =1;
  foreach ($questions as $question){
      $question =  filter_var($question, FILTER_SANITIZE_STRING);
      $data = [
-            'email' => $email,
+            'id' => $id,
             'ans' => $question,
             'num' => $quNum,
          ];
-        $sql = "INSERT INTO peoplesAns (email, answer, qunum) VALUES (:email, :ans, :num)";
+        $sql = "INSERT INTO peoplesAns (id, answer, qunum) VALUES (:id, :ans, :num)";
         $stmt = $conn->prepare($sql);
         $stmt->execute($data);
         $quNum ++;
